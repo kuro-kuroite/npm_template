@@ -29,6 +29,10 @@ module.exports = {
     "*.{md}": [
       "git add",
     ],
+    ".*{rc,json}": [
+      "yarn jsonlint",
+      "git add",
+    ],
   },
   "ignore": [
     "**/dist/*.js",
