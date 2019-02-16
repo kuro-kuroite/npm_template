@@ -6,5 +6,6 @@ module.exports = {
     'comma-dangle': ['error', 'always-multiline'],
     'prettier/prettier': 'error',
   },
+  parser: 'babel-eslint',
   plugins: ['prettier'],
 };
