@@ -4,13 +4,18 @@ module.exports = {
       "git add",
     ],
     "*.babel.js": [
-      "yarn babel",
-      "yarn prettier",
+      "yarn .babel --",
+      "yarn prettier --write",
+      "yarn eslint --fix",
       "yarn eslint",
       "git add",
     ],
+    "**/scripts/**/*.js": [
+      "git add",
+    ],
     "*.js": [
-      "yarn prettier",
+      "yarn prettier --write",
+      "yarn eslint --fix",
       "yarn eslint",
       "git add",
     ],
