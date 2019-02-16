@@ -23,6 +23,12 @@
     "path": "^0.12.7",
     "prettier": "^1.15.3"
   },
+  "files": [
+    "README.md",
+    "package.json",
+    "yarn.lock",
+    "dist"
+  ],
   "license": "MIT",
   "main": "dist/index.js",
   "private": true,
