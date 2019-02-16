@@ -1,23 +1,6 @@
 {
-  "name": "",
   "version": "0.0.1",
-  "description": "",
-  "main": "dist/index.js",
-  "repository": "",
-  "author": "",
-  "license": "MIT",
-  "private": true,
-  "scripts": {
-    "babel-node": "node --require @babel/register",
-    "deploy": "node ./scripts/babel/deploy.js src/js",
-    "deploy:sandbox": "node ./scripts/babel/deploy.js sandbox tmp",
-    ".babel": "node ./scripts/babel/index.js write-chenged",
-    ".babel:all": "node ./scripts/babel/index.js write",
-    ".linc": "node ./scripts/tasks/linc.js",
-    ".lint": "node ./scripts/tasks/eslint.js",
-    ".prettier": "node ./scripts/prettier/index.js write-chenged",
-    ".prettier:all": "node ./scripts/prettier/index.js write"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/cli": "^7.2.0",
     "@babel/core": "^7.2.0",
@@ -32,6 +15,7 @@
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-prettier": "^3.0.0",
+    "fixpack": "^2.3.1",
     "fs": "^0.0.1-security",
     "glob": "^7.1.3",
     "husky": "^1.2.0",
@@ -39,5 +23,19 @@
     "path": "^0.12.7",
     "prettier": "^1.15.3"
   },
-  "dependencies": {}
+  "license": "MIT",
+  "main": "dist/index.js",
+  "private": true,
+  "repository": "",
+  "scripts": {
+    ".babel": "node ./scripts/babel/index.js write-chenged",
+    ".babel:all": "node ./scripts/babel/index.js write",
+    ".linc": "node ./scripts/tasks/linc.js",
+    ".lint": "node ./scripts/tasks/eslint.js",
+    ".prettier": "node ./scripts/prettier/index.js write-chenged",
+    ".prettier:all": "node ./scripts/prettier/index.js write",
+    "babel-node": "node --require @babel/register",
+    "deploy": "node ./scripts/babel/deploy.js src/js",
+    "deploy:sandbox": "node ./scripts/babel/deploy.js sandbox tmp"
+  }
 }

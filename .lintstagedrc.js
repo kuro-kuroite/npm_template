@@ -14,6 +14,10 @@ module.exports = {
       "yarn eslint",
       "git add",
     ],
+    "package.json": [
+      "yarn fixpack",
+      "git add",
+    ],
     "*.{json,yml}": [
       "git add",
     ],
