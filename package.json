@@ -45,6 +45,7 @@
     ".prettier:all": "node ./scripts/prettier/index.js write",
     "babel-node": "node --require @babel/register",
     "deploy": "node ./scripts/babel/deploy.js src/js",
-    "deploy:sandbox": "node ./scripts/babel/deploy.js sandbox tmp"
+    "deploy:sandbox": "node ./scripts/babel/deploy.js sandbox tmp",
+    "postinstall": "npx patch-package"
   }
 }
