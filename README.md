@@ -10,17 +10,30 @@ npm_template を利用して 別のプロジェクトで使用するための個
 deploy npm library in dist direcotry.
 exporting library main file is *dist/index.js* which is written in package.json
 
+### TL; DR 主要ブランチ
+
+主要ブランチとして，npm_templateブランチを使用している．
+このブランチには，ライブラリ作成の時にコンフリクトをしないようにREADME.mdの内容を削除．
+また，同様の理由でVagrantfileも存在しない．
+
 #### hello world sample
 
-* you can create favorite npm library using this. and publish it to git remote repository
+* このテンプレートを使用して，好きな npm ライブラリを作成
 
 ```bash
+# option: create git repository
 # rename your favorite npm library name
-git clone https://github.com/kuro-kuroite/npm_template.git
-cd ..
-mv npm_template <npm name>
+mkdir path/to/<npm_name>
 cd $_
+git init
+touch README.md
+git add README.md && git commit -m "Initial commit"
 
+git checkout -b feature/npm_template
+git remote add template https://github.com/kuro-kuroite/npm_template.git
+git pull template feature/npm_template --allow-unrelated-histories
+
+git checkout -b feature/log_hello_world
 yarn
 
 # NOTE: escape backquote for bash
@@ -38,13 +51,57 @@ EOF
 
 # convert src/**/*.js into dist/**/*.js
 yarn deploy
-git add dist/ && git commit -m "feat: add logging hello template!"
-# create new git remote url, and then
-git remote add origin <new git remote url>
-git push origin master
 ```
 
-* use the \<npm name\> npm library for another project
+* option: 別のプロジェクト内で，上のライブラリをテスト
+
+```bash
+# start local test
+cd path/to/<npm_name>
+yarn link
+
+# option: create sample project
+mkdir -p path/to/project
+cd $_
+yarn add @babel/core @babel/preset-env @babel/register
+cat <<EOF >> .babelrc.js
+module.exports = {
+  presets: ['@babel/preset-env'],
+};
+EOF
+
+# test <npm_name>.logHelloName
+yarn add <npm_name>
+
+cat <<EOF >> index.js
+import { logHelloName } from <npm_name>;
+
+logHelloName('Tom!');
+EOF
+
+node --require @babel/register index.js
+
+# stop local test
+cd path/to/<npm_name>
+yarn unlink
+```
+
+* git remote repository(例: [GitHub](https://github.com/)) に公開
+
+```bash
+git add src/ dist/ && git commit -m "feat: add logging hello template!"
+# create new git remote url, and then
+git remote add origin <new git remote url>
+
+# option: merge feature/log_hello_world in local
+git merge feature/log_hello_world master
+git push origin master
+
+git push origin feature/log_hello_world
+# then, create pull request and merge this to master
+```
+
+* option: ライブラリ公開後に，別のプロジェクトでこのライブラリを使用
 
 first, you create project directory, and then `yarn add <new git remote url>`.
 you can use the created library for your project
@@ -89,7 +146,7 @@ format js files in project
 
 lint js files in project
 
-### development environmenmt
+### TL; DR 開発環境
 
 Vagrant and VirtualBox 環境を推奨する．Vagrant は，`yarn install` までの手順は，Windows 単体よりも煩雑である．
 しかし一度，`yarn install` が出来てしまうと，その後の開発で引きおこる
