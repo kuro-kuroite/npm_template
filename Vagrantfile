@@ -60,7 +60,9 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
   config.vm.provision :shell, privileged: false, inline: <<-SHELL
-    sudo apt install -y python-software-properties software-properties-common
+    # for gyp-node
+    sudo apt install -y python-minimal
+
     sudo add-apt-repository ppa:git-core/ppa -y
     sudo apt update
     sudo apt upgrade
